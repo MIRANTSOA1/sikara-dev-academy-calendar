@@ -11,7 +11,7 @@
 		<div class="calendar">
 			<div class="col leftCol">
 				<div class="content">
-					<h1 class="date">Friday<span>September 12th</span></h1>
+					<h1 class="date">Friday<span>July 12th</span></h1>
 					<div class="notes">
 						<p>
 							<input type="text" value="" placeholder="new note"/>
@@ -28,18 +28,18 @@
 				<div class="content">
 					<h2 class="year">2013</h2>
 					<ul class="months">
-						<li><a href="#" title="Jan" data-value="1">Jan</a></li>
-						<li><a href="#" title="Feb" data-value="2">Feb</a></li>
-						<li><a href="#" title="Mar" data-value="3">Mar</a></li>
-						<li><a href="#" title="Apr" data-value="4">Apr</a></li>
-						<li><a href="#" title="May" data-value="5">May</a></li>
-						<li><a href="#" title="Jun" data-value="6">Jun</a></li>
-						<li><a href="#" title="Jul" data-value="7">Jul</a></li>
-						<li><a href="#" title="Aug" data-value="8">Aug</a></li>
-						<li><a href="#" title="Sep" data-value="9" class="selected">Sep</a></li>
-						<li><a href="#" title="Oct" data-value="10">Oct</a></li>
-						<li><a href="#" title="Nov" data-value="11">Nov</a></li>
-						<li><a href="#" title="Dec" data-value="12">Dec</a></li>
+						<li><a href="#" title="Jan" data-value="1" onclick="getPageCalendar('January')">Jan</a></li>
+						<li><a href="#" title="Feb" data-value="2" onclick="getPageCalendar('February')">Feb</a></li>
+						<li><a href="#" title="Mar" data-value="3" onclick="getPageCalendar('March')">Mar</a></li>
+						<li><a href="#" title="Apr" data-value="4" onclick="getPageCalendar('April')">Apr</a></li>
+						<li><a href="#" title="May" data-value="5" onclick="getPageCalendar('May')">May</a></li>
+						<li><a href="#" title="Jun" data-value="6" onclick="getPageCalendar('June')">Jun</a></li>
+						<li><a href="#" title="Jul" data-value="7" onclick="getPageCalendar('July')">Jul</a></li>
+						<li><a href="#" title="Aug" data-value="8" class="selected" onclick="getPageCalendar('August')">Aug</a></li>
+						<li><a href="#" title="Sep" data-value="9" onclick="getPageCalendar('September')">Sep</a></li>
+						<li><a href="#" title="Oct" data-value="10" onclick="getPageCalendar('October')">Oct</a></li>
+						<li><a href="#" title="Nov" data-value="11" onclick="getPageCalendar('November')">Nov</a></li>
+						<li><a href="#" title="Dec" data-value="12" onclick="getPageCalendar('December')">Dec</a></li>
 					</ul>
 					<div class="clearfix"></div>
 					<ul class="weekday">
@@ -48,34 +48,151 @@
 						<li><a href="#" title="Wed" data-value="3">Wed</a></li>
 						<li><a href="#" title="Thu" data-value="4">Thu</a></li>
 						<li><a href="#" title="Fri" data-value="5">Fri</a></li>
-						<li><a href="#" title="Say" data-value="6">Sat</a></li>
+						<li><a href="#" title="Sat" data-value="6">Sat</a></li>
 						<li><a href="#" title="Sun" data-value="7">Sun</a></li>
 					</ul>
 					<div class="clearfix"></div>
 					<ul class="days">
 						<script>
-							for( var _i = 1; _i <= 31; _i += 1 ){
-								var _addClass = '';
-								if( _i === 12 ){ _addClass = ' class="selected"'; }
+							// 	const months = ["1","2","3","4","5","6","7","8","9","10","11","12"];
+								for( var _i = 1; _i <= 31; _i += 1 ){
+									var _addClass = '';
+									let jour = new Date();
+									if( _i === jour.getDay() ){ _addClass = ' class="selected"'; }
+									
+									switch( _i ){
+										case 8:
+										case 10:
+										case 27:
+											_addClass = 'class="event"';
+										break;
+									}
+									document.write( '<li><a href="#" title="'+_i+'" data-value="'+_i+'"'+_addClass+'>'+_i+'</a></li>' );
+									console.log(_addClass);
+								}
+							
+							
+							// let m = 0;
+							// let Day_in_month = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+							// let Jan = function(){
+							// 	for(let x = 1; x <= 5; x++){
+							// 		document.write('<li><a></a></li>');
+							// 	}
+							// 	for(let j = 1; j <= Day_in_month[m]; j++){
+							// 		document.write( '<li><a href="#" title= "'+j+'" data-value= "'+j+'"> '+j+' </a></li>' );
+							// 	}								
+							// }
+							
+							// let next_month = function(){
+							// 	for(let j = 1; j <= Day_in_month[m + 1]; j++){
+							// 		document.write( '<li><a href="#" title= "'+j+'" data-value= "'+j+'"> '+j+' </a></li>' );
+							// 	}
 								
-								switch( _i ){
-									case 8:
-									case 10:
-									case 27:
-										_addClass = ' class="event"';
-									break;
+							// }
+
+							// var Calendar_page = {
+							// 	'January': Jan(),
+							// 	'February': next_month(),
+							// 	'March': next_month(),
+							// 	'April': next_month(),
+							// 	'May': next_month(),
+							// 	'June': next_month(),
+							// 	'July': next_month(),
+							// 	'August': next_month(),
+							// 	'September': next_month(),
+							// 	'October': next_month(),
+							// 	'November': next_month(),
+							// 	'December': next_month()
+							// };
+							// function getPageCalendar(Calendar_page){
+							// 	var Content_to_return;
+							// 	switch(Calendar_page){
+							// 		case 'January': Content_to_return = Calendar_page.January;
+							// 			break;
+							// 		case 'February': Content_to_return = Calendar_page.February;
+							// 			break;
+							// 		case 'March': Content_to_return = Calendar_page.March;
+							// 			break;
+							// 		case 'April': Content_to_return = Calendar_page.April;
+							// 			break;
+							// 		case 'May': Content_to_return = Calendar_page.May;
+							// 			break;
+							// 		case 'June': Content_to_return = Calendar_page.June;
+							// 			break;
+							// 		case 'July': Content_to_return = Calendar_page.July;
+							// 			break;
+							// 		case 'August': Content_to_return = Calendar_page.August;
+							// 			break;
+							// 		case 'September': Content_to_return = Calendar_page.September;
+							// 			break;
+							// 		case 'October': Content_to_return = Calendar_page.October;
+							// 			break;
+							// 		case 'November': Content_to_return = Calendar_page.November;
+							// 			break;
+							// 		case 'December': Content_to_return = Calendar_page.December;
+							// 			break;
+							// 		default:
+										
+							// 			break;
+							// 	}
+							// 	document.querySelector('.days').innerHTML = Content_to_return;
+							// }
+
+							let currentDate = new Date();
+							const months = ["1","2","3","4","5","6","7","8","9","10","11","12"];
+							let Day_in_month = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+							month_now = currentDate.getMonth();
+							date_now = currentDate.getDate();
+							console.log(date_now);
+								if(months[0]< month_now){
+									for(let i = month_now + 1; i >= 1; i--){
+										let Month_Number = month_now - 1;
+										let Days_Number =  date_now + Day_in_month[Month_Number];
+										console.log(Day_in_month.length);
+										document.write( '<li><a href="#" title= "'+Days_Number+'" data-value= "'+Days_Number+'"> '+Days_Number+' </a></li>' );
+										Month_Number--;
+									}
+								}
+								else if (months[0] === currentDate.getMonth()) {
+									
+								} 
+								else if(months[0] > currentDate.getMonth + 1){
+									for(let i = month_now +1; i <= 12; i++){
+										let Month_Number = month_now - 1;
+										let Days_Number = Day_in_month[Month_Number] - day_now;
+										document.write( '<li><a href="#" title= "'+Days_Number+'" data-value= "'+Days_Number+'"> '+Days_Number+' </a></li>' );
+									}
 								}
 
-								document.write( '<li><a href="#" title="'+_i+'" data-value="'+_i+'"'+_addClass+'>'+_i+'</a></li>' );
-							}
 						</script>
+
 					</ul>
+					<script>
+							
+						// let currentDate = new Date();
+						const day = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+						const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+						let name_month = month[currentDate.getMonth()];
+						let day_now = currentDate.getDay();
+						if (day_now <= 7){
+							let name_day = day[currentDate.getDay()-1];
+							document.querySelector('.date').textContent = name_day + " " + name_month + " " + currentDate.getDay();
+						}
+						else if (day_now > 7 && day_now <= 31){
+							let i = 0;
+							if (i<7){
+								let name_day = day[i-1];
+								document.querySelector('.date').textContent = name_day + " " + name_month + " " + currentDate.getDay();
+								i++;
+							}
+						}							
+						console.log(currentDate.getDay());
+						document.querySelector('.year').textContent = currentDate.getFullYear();
+					</script>
 					<div class="clearfix"></div>
 				</div>
 			</div>
-
 			<div class="clearfix"></div>
-
 		</div>
   </body>
 </html>
