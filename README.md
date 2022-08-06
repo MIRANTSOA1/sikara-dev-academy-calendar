@@ -113,3 +113,7 @@ document.addEventListener('DOMContentLoaded',function(){
 })
 
 ```
+
+
+from Mirantsoa :
+         To display the January date, uncomment the January function and comment the called function
